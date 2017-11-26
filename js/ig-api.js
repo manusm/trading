@@ -9,10 +9,17 @@ var url = window.location.href;
 // If deployed to a labs environment, override the default demo urlRoot
 var env = url.match("https?:\/\/(.*)-labs.ig.com");
 
+if(url.match(".*localhost.*") || url.match("chrome-extension://*")) {
+    urlRoot = "https://" + environment + "-api.ig.com/gateway/deal";
+} else if (env && env.length>1) {
+    var envOverride = env[1].toLowerCase();
+    urlRoot = urlRoot.replace("demo", envOverride);
+	console.log("Overriding urlRoot with: " + urlRoot);
+}
+
 
 
 function connectToLightstreamer() {
-
 	// Instantiate Lightstreamer client instance
 	console.log("Connecting to Lighstreamer: " + lsEndpoint);
 	lsClient = new LightstreamerClient(lsEndpoint);
@@ -65,7 +72,7 @@ function login() {
 	}
 
 	//password = encryptedPassword(password);
-	console.log("Encrypted password " + password);
+	//console.log("Encrypted password " + password);
 
 	// Create a login request, ie a POST request to /session
 	var req = new XMLHttpRequest();
@@ -85,12 +92,12 @@ function login() {
 	var bodyParams = {};
 	bodyParams["identifier"] = identifier;
 	bodyParams["password"] = password;
-	bodyParams["encryptedPassword"] = true;
+	bodyParams["encryptedPassword"] = false;
 	req.body = JSON.stringify(bodyParams);
 
 	// Prettify the request for display purposes only
 	//$("#request_data").text(js_beautify(req.body) || "");
-	
+
 	// Send the request via a Javascript AJAX call
 	try {
 		$.ajax({
@@ -117,7 +124,7 @@ function login() {
 
 				// Show logged in status message on screen
 				//$("#loginStatus").css("color", "green").text("Logged in as " + accountId);
-				$(".alert").alert();
+				//$(".alert").show();
 				
 			},
 			error: function (response, status, error) {
@@ -129,7 +136,6 @@ function login() {
 	} catch (e) {
 		handleException(e);
 	}
-
 	return true;
 
 }
@@ -137,8 +143,10 @@ function login() {
 
 $('#loginButton').click(function () {
 	if (login()) {
-		debugger;
-		connectToLightstreamer();
+		window.location='dashboard.html';
+
+		//connectToLightstreamer();
+
 		//subscribeToLightstreamerTradeUpdates();
 		//showTradingPane();
 	}

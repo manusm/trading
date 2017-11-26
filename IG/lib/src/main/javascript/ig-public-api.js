@@ -180,7 +180,7 @@ function login() {
 
    // Prettify the request for display purposes only
    $("#request_data").text(js_beautify(req.body) || "");
-
+debugger;
    // Send the request via a Javascript AJAX call
    try {
       $.ajax({

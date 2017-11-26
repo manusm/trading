@@ -14,12 +14,15 @@
 
 		<!-- Custom styles for this template -->
 		<link href="css/signin.css" rel="stylesheet">
+		<style type="text/css">
+		.alert {
+			display:none;
+		}
+		</style>
 	</head>
 
 	<body>
-
 		<div class="container">
-
 			<form class="form-signin">
 				<h2 class="form-signin-heading">Please login</h2>
 				<label for="inputUsername" class="sr-only">User name</label>
@@ -35,11 +38,20 @@
 				</div>
 				<button class="btn btn-lg btn-primary btn-block" type="submit" id="loginButton">Login</button>
 			</form>
+			<!-- <div class="alert alert-success alert-dismissible fade show" role="alert">
+				<strong>Well done!</strong> You successfully read this important alert message.
+				 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div> -->
 		</div> <!-- /container -->
 
 		<script src="js/assets/jquery.js"></script>
 		<script src="js/assets/jquery-ui-1.10.3.custom.js"></script>
 		<script src="js/assets/require.js"></script>
+		<script src="js/assets/lightstreamer.js"></script>
+		<!-- <script src="js/popper.js"></script>
+		<script src="js/bootstrap.min.js"></script> -->
 		<script src="js/ig-api.js"></script>
 		<!-- Bootstrap core JavaScript
 		================================================== -->
