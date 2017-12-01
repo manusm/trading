@@ -125,6 +125,7 @@ function login() {
 				// Show logged in status message on screen
 				//$("#loginStatus").css("color", "green").text("Logged in as " + accountId);
 				//$(".alert").show();
+				window.location='dashboard.html';
 				
 			},
 			error: function (response, status, error) {
@@ -141,9 +142,10 @@ function login() {
 }
 
 
-$('#loginButton').click(function () {
+$('#loginButton').click(function (event) {
 	if (login()) {
-		window.location='dashboard.html';
+		event.preventDefault();
+		//window.location='dashboard.html';
 
 		//connectToLightstreamer();
 
